@@ -8,16 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Setting extends Model
 {
     use HasFactory;
-    protected $fillable=[
-        'about_title',
-        'about_description',
-        'fb_url',
-        'github_url',
-        'linkedin_url',
-        'freelance_url',
-        'cv_url',
-        'video_url',
-        'about_photo',
-        'contact_mail'
+    protected $fillable = [
+        'id', 
+        'footer_logo_text', 
+        'fb_url', 
+        'skype_url', 
+        'linkedin_url', 
+        'telegram_url', 
+        'whatsapp_url', 
+        'contact_mail', 
+        'menu_link', 
+        'logo_header', 
+        'logo_footer', 
+        'about_photo'
+    ];
+
+    protected $casts = [
+        'menu_link' => 'array'
     ];
 }

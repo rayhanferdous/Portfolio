@@ -17,7 +17,6 @@ class SettingController extends Controller
     public function index()
     {
         $setting = Setting::first();
-        // dd($setting);
         return view('admin.setting.index', compact('setting'));
     }
 
@@ -28,31 +27,76 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Setting $setting)
+
+    public function update(Request $request)
     {
         $validated = $request->validate([
-            'about_title' => 'required','min:3',
-            'about_description' => 'required','min:10',
-            'fb_url' => 'required|url',
-            'github_url' => 'required|url',
-            'linkedin_url' => 'required|url',
-            'freelance_url' => 'required|url',
-            'cv_url' => 'required|url',
-            'video_url' => 'required|url',
+            'logo_header' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'logo_footer' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'footer_logo_text' => 'required',
+            'fb_url' => 'nullable|url',
+            'skype_url' => 'nullable|url',
+            'linkedin_url' => 'nullable|url',
+            'telegram_url' => 'nullable|url',
+            'whatsapp_url' => 'nullable|url',
             'contact_mail' => 'required|email',
-            'about_photo' => 'image|mimes:jpeg,png,jpg|max:2048'
+            'menu_link' => 'nullable|array',
         ]);
 
-        // $setting = Setting::first();
-        if($request->hasfile('image')){
-            if($setting->about_photo != null){
+        // Transform menu_link into the desired format (array of objects with name and link)
+        $menuLinks = [];
+        if (isset($validated['menu_link'])) {
+            foreach ($validated['menu_link']['name'] as $index => $name) {
+                $menuLinks[] = [
+                    'name' => $name,
+                    'link' => $validated['menu_link']['link'][$index] ?? ''
+                ];
+            }
+        }
+
+        $data = [
+            'footer_logo_text' => $validated['footer_logo_text'],
+            'fb_url' => $validated['fb_url'] ?? null,
+            'skype_url' => $validated['skype_url'] ?? null,
+            'linkedin_url' => $validated['linkedin_url'] ?? null,
+            'telegram_url' => $validated['telegram_url'] ?? null,
+            'whatsapp_url' => $validated['whatsapp_url'] ?? null,
+            'contact_mail' => $validated['contact_mail'],
+            'menu_link' => $menuLinks
+        ];
+        $setting = Setting::first();
+
+        if ($request->hasFile('logo_header')) {
+            if ($setting && $setting->logo_header) {
+                Storage::delete(str_replace('storage/', 'public/', $setting->logo_header));
+            }
+
+            $logoHeaderPath = $request->file('logo_header')->store('public/logos');
+            $data['logo_header'] = str_replace('public/', 'storage/', $logoHeaderPath);
+        }
+
+        if ($request->hasFile('logo_footer')) {
+            if ($setting && $setting->logo_footer) {
+                Storage::delete(str_replace('storage/', 'public/', $setting->logo_footer));
+            }
+
+            $logoFooterPath = $request->file('logo_footer')->store('public/logos');
+            $data['logo_footer'] = str_replace('public/', 'storage/', $logoFooterPath);
+        }
+
+
+        if ($request->hasFile('image')) {
+            if ($setting && $setting->about_photo) {
                 Storage::delete($setting->about_photo);
             }
-            $get_new_file = $request->file('image')->store('images');
-            $setting->about_photo = $get_new_file;
+            $data['about_photo'] = $request->file('image')->store('images');
         }
-        $setting->update($validated);
-        return to_route('admin.setting.index')->with('message','Data Updated');
-    }
 
+        Setting::updateOrCreate(
+            ['id' => 1],
+            $data
+        );
+
+        return redirect()->route('admin.setting.index')->with('message', 'Data Updated');
+    }
 }

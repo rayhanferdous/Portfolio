@@ -44,7 +44,8 @@ Route::middleware(['auth','isAdmin'])->name('admin.')->prefix('/admin')->group(f
     Route::get('/portfolio/search', [PortfolioController::class,'search'])->name('portfolio.search');
     Route::resource('/portfolio', PortfolioController::class);
     Route::resource('/aboutme', AboutmeController::class);
-    Route::resource('/setting', SettingController::class);
+    Route::post('/setting', [SettingController::class, 'update'])->name('setting.update');
+    Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
 });
 
 Auth::routes();
