@@ -72,6 +72,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.hero.index') }}">
+                            <span class="menu-title">Hero Section</span>
+                            <i class="mdi mdi-settings menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.aboutme.index') }}">
                             <span class="menu-title">Aboutme</span>
                             <i class="mdi mdi-contacts menu-icon"></i>

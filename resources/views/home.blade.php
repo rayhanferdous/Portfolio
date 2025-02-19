@@ -1,23 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
+    {{-- hero start --}}
     <section>
         <div class="container">
             <div class="banner rounded-4 p-5"
-                style="background-image: url(import/assets/images/banner.png); background-size: cover ; background-repeat: no-repeat; background-position: center;">
+                style="background-image: url({{ asset($heroSection->hero_image) }}); background-size: cover ; background-repeat: no-repeat; background-position: center;">
                 <div class="text-content text-white py-5 my-5">
                     <p class="fs-4">
-                        VFX / Graphics Head
+                        {{ $heroSection->hero_small_title }}
                     </p>
                     <h1 class="display-1">
-                        Jessica <br> Kobessi
+                        {!! implode('<br>', explode(' ', $heroSection->hero_title)) !!}
                     </h1>
                 </div>
                 <div class="row text-uppercase bg-black rounded-4 p-3 mt-5">
                     <div class="col-md-3">
                         <div class="d-flex align-items-center gap-4">
                             <h2 class="display-2 text-light">
-                                12
+                                {{ $heroSection->years_of_experience }}
                             </h2>
                             <p class="text-light-emphasis justify-content-center m-0 ls-4">
                                 Years of <br> experience
@@ -27,30 +28,30 @@
                     <div class="col-md-3">
                         <div class="d-flex align-items-center gap-4">
                             <h2 class="display-2 text-light">
-                                820
+                                {{ $heroSection->number_of_awards }}
                             </h2>
                             <p class="text-light-emphasis justify-content-center m-0 ls-4">
-                                satisfied <br> clients
+                                Number of <br> awards
                             </p>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="d-flex align-items-center gap-4">
                             <h2 class="display-2 text-light">
-                                720
+                                {{ $heroSection->number_of_pubs }}
                             </h2>
                             <p class="text-light-emphasis justify-content-center m-0 ls-4">
-                                employees <br> worldwide
+                                Number of <br> publications
                             </p>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="d-flex align-items-center gap-4">
                             <h2 class="display-2 text-light">
-                                2200
+                                {{ $heroSection->number_of_published_news }}
                             </h2>
                             <p class="text-light-emphasis justify-content-center m-0 ls-4">
-                                projects completed
+                                Number of <br> published news
                             </p>
                         </div>
                     </div>
@@ -58,7 +59,8 @@
             </div>
         </div>
     </section>
-
+    {{-- hero end --}}
+    {{-- info card start --}}
     <section class="p-5 ">
         <div class="container">
             <div class="row justify-content-center">
@@ -116,66 +118,53 @@
             </div>
         </div>
     </section>
-
+    {{-- info card end --}}
     <section>
         <div class="container">
             <div class="row">
+                {{-- education start --}}
                 <div class="col-lg-4">
                     <div class="h-100 bg-yellow p-4 rounded-4">
                         <h3>
                             Education
                         </h3>
-                        <div class="py-4">
-                            <p class="text-dark-emphasis">
-                                1998 - 2004
-                            </p>
-                            <h5>
-                                Bachelors in Engineering in Information Technology
-                            </h5>
-                            <p class="text-dark-emphasis">
-                                Bachelors in Engineering in Information Technology
-                            </p>
-                        </div>
-                        <p class="text-dark-emphasis">
-                            2004 - 2006
-                        </p>
-                        <h5>
-                            Masters in Data Analysis
-                        </h5>
-                        <p class="text-dark-emphasis">
-                            Harvard School of Science and management
-                        </p>
+                        @foreach ($educations as $education)
+                            <div class="py-4">
+                                <p class="text-dark-emphasis">
+                                    {{ $education->to }} - {{ $education->from }}
+                                </p>
+                                <h5>
+                                    {{ $education->title }}
+                                </h5>
+                                <p class="text-dark-emphasis">
+                                    {{ $education->association }}
+                                </p>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-
+                {{-- Experiences start --}}
                 <div class="col-lg-4">
                     <div class="h-100 bg-green p-4 rounded-4">
                         <h3>
                             Experiences
                         </h3>
-                        <div class="py-4">
-                            <p class="text-dark-emphasis">
-                                2007 - 2012
-                            </p>
-                            <h5>
-                                Creative Agency Inc.: Design head
-                            </h5>
-                            <p class="text-dark-emphasis">
-                                iacentem substantiales um se sed esse haec Possit facis qui a a a patriam .
-                            </p>
-                        </div>
-                        <p class="text-dark-emphasis">
-                            2013 - present
-                        </p>
-                        <h5>
-                            Studio Alpha.: Project Manager
-                        </h5>
-                        <p class="text-dark-emphasis">
-                            iacentem substantiales um se sed esse haec Possit facis qui a a a patriam .
-                        </p>
+                        @foreach ($experiences as $experience)
+                            <div class="py-4">
+                                <p class="text-dark-emphasis">
+                                    {{ $experience->to }} - {{ $experience->from }}
+                                </p>
+                                <h5>
+                                    {{ $experience->association }} .: {{ $experience->title }}
+                                </h5>
+                                <p class="text-dark-emphasis">
+                                    {{ $experience->description }}
+                                </p>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-
+                {{-- Publications start --}}
                 <div class="col-lg-4">
                     <div class="h-100 bg-teal p-4 rounded-4">
                         <h3>

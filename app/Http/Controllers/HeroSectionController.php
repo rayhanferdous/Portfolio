@@ -3,65 +3,63 @@
 namespace App\Http\Controllers;
 
 use App\Models\HeroSection;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class HeroSectionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function heroIndex()
     {
-        //
+        $hero = HeroSection::first();
+        return view('admin.hero.index', compact('hero'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): Response
+    public function heroUpdate(Request $request)
     {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        //
-    }
+        $validated = $request->validate([
+            'hero_small_title' => 'required',
+            'hero_title' => 'required',
+            'hero_image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'years_of_experience' => 'required|numeric|int',
+            'number_of_awards' => 'required|numeric|int',
+            'number_of_pubs' => 'required|numeric|int',
+            'number_of_published_news' => 'required|numeric|int',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(HeroSection $heroSection): Response
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(HeroSection $heroSection): Response
-    {
-        //
-    }
+        $data = [
+            'hero_small_title' => $validated['hero_small_title'],
+            'hero_title' => $validated['hero_title'],
+            'years_of_experience' => $validated['years_of_experience'],
+            'number_of_awards' => $validated['number_of_awards'],
+            'number_of_pubs' => $validated['number_of_pubs'],
+            'number_of_published_news' => $validated['number_of_published_news'],
+        ];
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, HeroSection $heroSection): RedirectResponse
-    {
-        //
-    }
+        $heroSection = HeroSection::first();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(HeroSection $heroSection): RedirectResponse
-    {
-        //
+        if ($request->hasFile('hero_image')) {
+            if ($heroSection && $heroSection->hero_image) {
+                Storage::delete(str_replace('storage/', 'public/', $heroSection->hero_image));
+            }
+
+            $heroImgPath = $request->file('hero_image')->store('public/heros');
+            $data['hero_image'] = str_replace('public/', 'storage/', $heroImgPath);
+        }
+
+
+        HeroSection::updateOrCreate(
+            ['id' => 1],
+            $data
+        );
+
+        return redirect()->route('admin.hero.index')->with('message', 'Data Updated');
     }
 }

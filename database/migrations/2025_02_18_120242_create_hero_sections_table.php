@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('hero_small_title');
             $table->string('hero_title');
+            $table->string('hero_image');
             $table->string('years_of_experience')->nullable();
             $table->string('number_of_awards')->nullable();
             $table->string('number_of_pubs')->nullable();

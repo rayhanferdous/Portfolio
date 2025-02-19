@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HeroSectionController;
 use App\Mail\ContactMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -32,16 +33,18 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact');
 
 //Admin Panel
-Route::middleware(['auth','isAdmin'])->name('admin.')->prefix('/admin')->group(function(){
+Route::middleware(['auth', 'isAdmin'])->name('admin.')->prefix('/admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
-    Route::get('/qualification/education', [QualificationController::class,'showEducation'])->name('qualification.edu');
-    Route::get('/qualification/experience', [QualificationController::class,'showExperience'])->name('qualification.exp');
+    Route::get('/hero-section', [HeroSectionController::class, 'heroIndex'])->name('hero.index');
+    Route::post('/hero-section', [HeroSectionController::class, 'heroUpdate'])->name('hero.update');
+    Route::get('/qualification/education', [QualificationController::class, 'showEducation'])->name('qualification.edu');
+    Route::get('/qualification/experience', [QualificationController::class, 'showExperience'])->name('qualification.exp');
     Route::resource('/qualification', QualificationController::class);
     Route::resource('/skill', SkillController::class);
     Route::resource('/service', ServiceController::class);
     Route::resource('/review', ReviewController::class);
     Route::resource('/category', CategoryController::class);
-    Route::get('/portfolio/search', [PortfolioController::class,'search'])->name('portfolio.search');
+    Route::get('/portfolio/search', [PortfolioController::class, 'search'])->name('portfolio.search');
     Route::resource('/portfolio', PortfolioController::class);
     Route::resource('/aboutme', AboutmeController::class);
     Route::post('/setting', [SettingController::class, 'update'])->name('setting.update');

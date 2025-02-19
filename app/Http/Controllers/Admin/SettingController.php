@@ -85,13 +85,6 @@ class SettingController extends Controller
         }
 
 
-        if ($request->hasFile('image')) {
-            if ($setting && $setting->about_photo) {
-                Storage::delete($setting->about_photo);
-            }
-            $data['about_photo'] = $request->file('image')->store('images');
-        }
-
         Setting::updateOrCreate(
             ['id' => 1],
             $data
