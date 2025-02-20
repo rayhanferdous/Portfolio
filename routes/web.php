@@ -14,6 +14,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\HeroSectionController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\TestimonialController;
 use App\Mail\ContactMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -53,6 +54,7 @@ Route::middleware(['auth', 'isAdmin'])->name('admin.')->prefix('/admin')->group(
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
     Route::resource('/news', NewsController::class);
     Route::resource('/faq', FAQController::class);
+    Route::resource('/testimonial', TestimonialController::class);
 });
 
 Auth::routes();

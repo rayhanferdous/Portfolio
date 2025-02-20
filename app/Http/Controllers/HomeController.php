@@ -12,6 +12,7 @@ use App\Models\Review;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\Skill;
+use App\Models\Testimonial;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -37,10 +38,7 @@ class HomeController extends Controller
             'experience'
         )->where('id', 1)->first();
 
-        $heroSection = HeroSection::first();
 
-        $experiences = Qualification::where('type', ['Work'])->orderBy('id', 'desc')->take(3)->get();
-        $educations = Qualification::where('type', ['Education'])->orderBy('id', 'desc')->take(3)->get();
 
         $skills = Skill::orderBy('id', 'desc')->take(6)->get();
 
@@ -51,23 +49,28 @@ class HomeController extends Controller
 
         $portfolios = Portfolio::with('category')->orderBy('id', 'desc')->take(6)->get();
 
+        $heroSection = HeroSection::first();
+        $experiences = Qualification::where('type', ['Work'])->orderBy('id', 'desc')->take(3)->get();
+        $educations = Qualification::where('type', ['Education'])->orderBy('id', 'desc')->take(3)->get();
         $setting = Setting::first();
         $news = News::orderBy('id', 'desc')->take(4)->get();
         $faq = FAQ::all();
+        $testimonials = Testimonial::orderBy('id', 'desc')->get();
 
         return view('home', compact(
             'user',
-            'heroSection',
-            'experiences',
-            'educations',
             'skills',
             'services',
             'categories',
             'portfolios',
-            'setting',
             'reviewers',
+            'heroSection',
+            'experiences',
+            'educations',
+            'setting',
             'news',
-            'faq'
+            'faq',
+            'testimonials'
         ));
     }
 }

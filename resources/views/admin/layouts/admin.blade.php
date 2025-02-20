@@ -90,6 +90,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.testimonial.index') }}">
+                            <span class="menu-title">Testimonial</span>
+                            <i class="mdi mdi-message-draw menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.aboutme.index') }}">
                             <span class="menu-title">Aboutme</span>
                             <i class="mdi mdi-contacts menu-icon"></i>
