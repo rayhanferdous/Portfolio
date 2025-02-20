@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\FAQ;
 use App\Models\HeroSection;
 use App\Models\News;
 use App\Models\Portfolio;
@@ -52,6 +53,7 @@ class HomeController extends Controller
 
         $setting = Setting::first();
         $news = News::orderBy('id', 'desc')->take(4)->get();
+        $faq = FAQ::all();
 
         return view('home', compact(
             'user',
@@ -64,7 +66,8 @@ class HomeController extends Controller
             'portfolios',
             'setting',
             'reviewers',
-            'news'
+            'news',
+            'faq'
         ));
     }
 }

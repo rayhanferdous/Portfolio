@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FAQController;
 use App\Http\Controllers\HeroSectionController;
 use App\Http\Controllers\NewsController;
 use App\Mail\ContactMail;
@@ -51,6 +52,7 @@ Route::middleware(['auth', 'isAdmin'])->name('admin.')->prefix('/admin')->group(
     Route::post('/setting', [SettingController::class, 'update'])->name('setting.update');
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
     Route::resource('/news', NewsController::class);
+    Route::resource('/faq', FAQController::class);
 });
 
 Auth::routes();
