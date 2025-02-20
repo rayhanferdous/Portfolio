@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\HeroSection;
+use App\Models\News;
 use App\Models\Portfolio;
 use App\Models\Qualification;
 use App\Models\Review;
@@ -50,6 +51,7 @@ class HomeController extends Controller
         $portfolios = Portfolio::with('category')->orderBy('id', 'desc')->take(6)->get();
 
         $setting = Setting::first();
+        $news = News::orderBy('id', 'desc')->take(4)->get();
 
         return view('home', compact(
             'user',
@@ -61,7 +63,8 @@ class HomeController extends Controller
             'categories',
             'portfolios',
             'setting',
-            'reviewers'
+            'reviewers',
+            'news'
         ));
     }
 }

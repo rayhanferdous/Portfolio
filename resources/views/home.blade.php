@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- hero start --}}
-    <section>
+    <section style="margin-top: 100px;">
         <div class="container">
             <div class="banner rounded-4 p-5"
                 style="background-image: url({{ asset($heroSection->hero_image) }}); background-size: cover ; background-repeat: no-repeat; background-position: center;">
@@ -196,7 +196,7 @@
             </div>
         </div>
     </section>
-
+    {{-- referance section --}}
     <section class="py-5">
         <div class="container">
             <div class="rounded-4 p-5"
@@ -233,7 +233,7 @@
             </div>
         </div>
     </section>
-
+    {{-- image/video --}}
     <section class="portfolio py-5">
         <div class="container">
             <div class="justify-content-center">
@@ -346,7 +346,7 @@
 
             </div>
     </section>
-
+    {{-- news --}}
     <section class="py-5">
         <div class="container">
             <div class="text-center">
@@ -358,82 +358,27 @@
                 </p>
             </div>
             <div class="row py-4">
-                <div class="col-lg-6 p-3">
-                    <div class="post-item p-3 border rounded-5">
-                        <div class="row g-md-5">
-                            <div class="col-lg-5">
-                                <img src="{{ asset('import/assets/images/post-thumb-1.jpg') }}"
-                                    class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-lg-7">
-                                <p class="text-uppercase text-muted mt-3">
-                                    Design / Sept 12, 2022
-                                </p>
-                                <h3>
-                                    Graphic Designing Useful Tips & Best Practices
-                                </h3>
-                            </div>
+                @foreach ($news as $newsItem)
+                    <a href="{{ $newsItem->published_link }}" target="_blank" class="col-lg-6 p-3">
+                        <div class="post-item p-3 border rounded-5">
+                            <div class="row g-md-5">
+                                <div class="col-lg-5">
+                                    <img src="{{ asset($newsItem->thumbnail) }}" class="img-fluid rounded-4">
+                                </div>
+                                <div class="col-lg-7">
+                                    <p class="text-uppercase text-muted mt-3">
+                                        {{ $newsItem->type }} / {{ date('M d, Y', strtotime($newsItem->published_at)) }}
+                                    </p>
+                                    <h3>
+                                        {{ $newsItem->title }}
+                                    </h3>
+                                </div>
 
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 p-3">
-                    <div class="post-item p-3 border rounded-5">
-                        <div class="row g-md-5">
-                            <div class="col-lg-5">
-                                <img src="{{ asset('import/assets/images/post-thumb-2.jpg') }}"
-                                    class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-lg-7">
-                                <p class="text-uppercase text-muted mt-3">
-                                    Design / Sept 12, 2022
-                                </p>
-                                <h3>
-                                    Best way to do branding of digital products
-                                </h3>
-                            </div>
+                    </a>
+                @endforeach
 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 p-3">
-                    <div class="post-item p-3 border rounded-5">
-                        <div class="row g-md-5">
-                            <div class="col-lg-5">
-                                <img src="{{ asset('import/assets/images/post-thumb-3.jpg') }}"
-                                    class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-lg-7">
-                                <p class="text-uppercase text-muted mt-3">
-                                    Design / Sept 12, 2022
-                                </p>
-                                <h3>
-                                    Top 10 graphic designs review in 2022
-                                </h3>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 p-3">
-                    <div class="post-item p-3 border rounded-5">
-                        <div class="row g-md-5">
-                            <div class="col-lg-5">
-                                <img src="{{ asset('import/assets/images/post-thumb-4.jpg') }}"
-                                    class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-lg-7">
-                                <p class="text-uppercase text-muted mt-3">
-                                    Design / Sept 12, 2022
-                                </p>
-                                <h3>
-                                    Graphic Designing Useful Tips & Best Practices
-                                </h3>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="text-center">
                 <button type="button" class="btn btn-outline-dark btn-lg mt-3 btn-color text-uppercase">

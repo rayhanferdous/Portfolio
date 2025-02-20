@@ -74,7 +74,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.hero.index') }}">
                             <span class="menu-title">Hero Section</span>
-                            <i class="mdi mdi-settings menu-icon"></i>
+                            <i class="mdi mdi-play-box-outline menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.news.index') }}">
+                            <span class="menu-title">News Section</span>
+                            <i class="mdi mdi-newspaper menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">
