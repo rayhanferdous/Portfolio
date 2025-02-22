@@ -43,9 +43,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="published_link">Pbulished Link</label>
+                            <label for="published_link">Published Link</label>
                             <input type="text" class="form-control" id="published_link" name="published_link"
-                                placeholder="Pbulished Link" value="{{ $news->published_link ?? '' }}" required>
+                                placeholder="Published Link" value="{{ $news->published_link ?? '' }}" required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-gradient-primary me-2">Update</button>

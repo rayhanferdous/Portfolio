@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\AwardController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\HeroSectionController;
@@ -55,6 +56,7 @@ Route::middleware(['auth', 'isAdmin'])->name('admin.')->prefix('/admin')->group(
     Route::resource('/news', NewsController::class);
     Route::resource('/faq', FAQController::class);
     Route::resource('/testimonial', TestimonialController::class);
+    Route::resource('/awards', AwardController::class);
 });
 
 Auth::routes();

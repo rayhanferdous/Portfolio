@@ -96,6 +96,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.awards.index') }}">
+                            <span class="menu-title">Awards</span>
+                            <i class="mdi mdi-medal menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.aboutme.index') }}">
                             <span class="menu-title">Aboutme</span>
                             <i class="mdi mdi-contacts menu-icon"></i>

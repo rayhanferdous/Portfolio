@@ -252,18 +252,25 @@
                         data-aos="fade-up">
                         <a href="#" class="btn btn-primary text-decoration-none text-uppercase is-checked"
                             data-filter=".photography">Images</a>
-                        <a href="#" class="btn btn-primary text-decoration-none text-uppercase"
+                        {{-- <a href="#" class="btn btn-primary text-decoration-none text-uppercase"
                             data-filter=".graphicdesign">Video
                             Design</a>
                         <a href="#" class="btn btn-primary text-decoration-none text-uppercase"
                             data-filter=".illustrations">Illustrations</a>
                         <a href="#" class="btn btn-primary text-decoration-none text-uppercase"
-                            data-filter=".branding">Branding</a>
+                            data-filter=".branding">Branding</a> --}}
                     </div>
                 </div>
 
                 <div class="grid p-0 clearfix row row-cols-2 row-cols-lg-3 row-cols-xl-4" data-aos="fade-up">
-                    <div class="col mb-4 portfolio-item photography">
+                    @foreach ($awards as $award)
+                        <div class="col mb-4 portfolio-item photography {{ $award->category }}">
+                            <a href="{{ asset($award->image) }}" data-lightbox="portfolio"
+                                data-title="{{ $award->title }}" title="{{ $award->title }}"><img
+                                    src="{{ asset($award->image) }}" class="img-fluid rounded-4" alt="portfolio"></a>
+                        </div>
+                    @endforeach
+                    {{-- <div class="col mb-4 portfolio-item photography">
                         <a href="import/assets/images/illustration-1.jpg" data-lightbox="illustration-1"
                             data-title="illustration-1" title="Sample Caption goes here for Portfolio Item 1."><img
                                 src="{{ asset('import/assets/images/illustration-1.jpg') }}" class="img-fluid rounded-4"
@@ -334,7 +341,7 @@
                             data-title="illustration-2" title="Sample Caption goes here for Portfolio Item1 2."><img
                                 src="{{ asset('import/assets/images/illustration-2.jpg') }}" class="img-fluid rounded-4"
                                 alt="portfolio"></a>
-                    </div>
+                    </div> --}}
 
                 </div>
 

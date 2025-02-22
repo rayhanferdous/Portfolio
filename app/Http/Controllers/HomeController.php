@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Award;
 use App\Models\Category;
 use App\Models\FAQ;
 use App\Models\HeroSection;
@@ -56,6 +57,7 @@ class HomeController extends Controller
         $news = News::orderBy('id', 'desc')->take(4)->get();
         $faq = FAQ::all();
         $testimonials = Testimonial::orderBy('id', 'desc')->get();
+        $awards = Award::orderBy('id', 'desc')->get();
 
         return view('home', compact(
             'user',
@@ -70,7 +72,8 @@ class HomeController extends Controller
             'setting',
             'news',
             'faq',
-            'testimonials'
+            'testimonials',
+            'awards'
         ));
     }
 }
