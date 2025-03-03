@@ -24,13 +24,13 @@ class HeroSectionController extends Controller
     {
 
         $validated = $request->validate([
-            'hero_small_title' => 'required',
-            'hero_title' => 'required',
-            'hero_image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'years_of_experience' => 'required|numeric|int',
-            'number_of_awards' => 'required|numeric|int',
-            'number_of_pubs' => 'required|numeric|int',
-            'number_of_published_news' => 'required|numeric|int',
+            'hero_small_title' => 'nullable',
+            'hero_title' => 'nullable',
+            'hero_image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'years_of_experience' => 'nullable|numeric|int',
+            'number_of_awards' => 'nullable|numeric|int',
+            'number_of_pubs' => 'nullable|numeric|int',
+            'number_of_published_news' => 'nullable|numeric|int',
         ]);
 
 
