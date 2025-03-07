@@ -33,7 +33,7 @@ class SettingController extends Controller
         $validated = $request->validate([
             'logo_header' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'logo_footer' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'footer_logo_text' => 'required',
+            'footer_logo_text' => 'nullable',
             'fb_url' => 'nullable|url',
             'skype_url' => 'nullable|url',
             'linkedin_url' => 'nullable|url',

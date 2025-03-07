@@ -4,64 +4,81 @@
     {{-- hero start --}}
     <section style="margin-top: 100px;">
         <div class="container">
-            <div class="banner rounded-4 p-5"
-                style="background-image: url({{ asset($heroSection->hero_image) }}); background-size: cover ; background-repeat: no-repeat; background-position: center;">
-                <div class="text-content text-white py-5 my-5">
-                    <p class="fs-4">
-                        {{ $heroSection->hero_small_title }}
-                    </p>
-                    <h1 class="display-1">
-                        {!! implode('<br>', explode(' ', $heroSection->hero_title)) !!}
-                    </h1>
+            @if (isset($heroSection))
+
+                <div class="banner rounded-4 p-5"
+                    style="background-image: url({{ asset($heroSection->hero_image) }}); background-size: cover ; background-repeat: no-repeat; background-position: center;">
+                    <div class="text-content text-white py-5 my-5">
+                        @if ($heroSection->hero_small_title)
+                            <p class="fs-4">
+                                {{ $heroSection->hero_small_title }}
+                            </p>
+                        @endif
+                        @if ($heroSection->hero_title)
+                            <h1 class="display-1">
+                                {!! implode('<br>', explode(' ', $heroSection->hero_title)) !!}
+                            </h1>
+                        @endif
+                    </div>
+                    <div class="row text-uppercase bg-black rounded-4 p-3 mt-5">
+                        @if ($heroSection->years_of_experience)
+                            <div class="col-md-3">
+                                <div class="d-flex align-items-center gap-4">
+                                    <h2 class="display-2 text-light">
+                                        {{ $heroSection->years_of_experience }}
+                                    </h2>
+                                    <p class="text-light-emphasis justify-content-center m-0 ls-4">
+                                        Years of <br> experience
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
+                        @if ($heroSection->number_of_awards)
+                            <div class="col-md-3">
+                                <div class="d-flex align-items-center gap-4">
+                                    <h2 class="display-2 text-light">
+                                        {{ $heroSection->number_of_awards }}
+                                    </h2>
+                                    <p class="text-light-emphasis justify-content-center m-0 ls-4">
+                                        Number of <br> awards
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if ($heroSection->number_of_pubs)
+                            <div class="col-md-3">
+                                <div class="d-flex align-items-center gap-4">
+                                    <h2 class="display-2 text-light">
+                                        {{ $heroSection->number_of_pubs }}
+                                    </h2>
+                                    <p class="text-light-emphasis justify-content-center m-0 ls-4">
+                                        Number of <br> publications
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
+                        @if ($heroSection->number_of_published_news)
+                            <div class="col-md-3">
+                                <div class="d-flex align-items-center gap-4">
+                                    <h2 class="display-2 text-light">
+                                        {{ $heroSection->number_of_published_news }}
+                                    </h2>
+                                    <p class="text-light-emphasis justify-content-center m-0 ls-4">
+                                        Number of <br> published news
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
                 </div>
-                <div class="row text-uppercase bg-black rounded-4 p-3 mt-5">
-                    <div class="col-md-3">
-                        <div class="d-flex align-items-center gap-4">
-                            <h2 class="display-2 text-light">
-                                {{ $heroSection->years_of_experience }}
-                            </h2>
-                            <p class="text-light-emphasis justify-content-center m-0 ls-4">
-                                Years of <br> experience
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="d-flex align-items-center gap-4">
-                            <h2 class="display-2 text-light">
-                                {{ $heroSection->number_of_awards }}
-                            </h2>
-                            <p class="text-light-emphasis justify-content-center m-0 ls-4">
-                                Number of <br> awards
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="d-flex align-items-center gap-4">
-                            <h2 class="display-2 text-light">
-                                {{ $heroSection->number_of_pubs }}
-                            </h2>
-                            <p class="text-light-emphasis justify-content-center m-0 ls-4">
-                                Number of <br> publications
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="d-flex align-items-center gap-4">
-                            <h2 class="display-2 text-light">
-                                {{ $heroSection->number_of_published_news }}
-                            </h2>
-                            <p class="text-light-emphasis justify-content-center m-0 ls-4">
-                                Number of <br> published news
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endif
+
         </div>
     </section>
     {{-- hero end --}}
     {{-- info card start --}}
-    <section class="p-5 ">
+    {{-- <section class="p-5 ">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-3">
@@ -117,7 +134,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     {{-- info card end --}}
     <section>
         <div class="container">
@@ -265,9 +282,9 @@
                 <div class="grid p-0 clearfix row row-cols-2 row-cols-lg-3 row-cols-xl-4" data-aos="fade-up">
                     @foreach ($awards as $award)
                         <div class="col mb-4 portfolio-item photography {{ $award->category }}">
-                            <a href="{{ asset($award->image) }}" data-lightbox="portfolio"
-                                data-title="{{ $award->title }}" title="{{ $award->title }}"><img
-                                    src="{{ asset($award->image) }}" class="img-fluid rounded-4" alt="portfolio"></a>
+                            <a href="{{ asset($award->image) }}" data-lightbox="portfolio" data-title="{{ $award->title }}"
+                                title="{{ $award->title }}"><img src="{{ asset($award->image) }}" class="img-fluid rounded-4"
+                                    alt="portfolio"></a>
                         </div>
                     @endforeach
                     {{-- <div class="col mb-4 portfolio-item photography">
@@ -444,8 +461,8 @@
                             <div class="accordion-item border mb-3 rounded-3">
                                 <h5 class="accordion-header">
                                     <button class="accordion-button collapsed" style="font-weight:bold;" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapse{{ $item->id }}"
-                                        aria-expanded="true" aria-controls="collapse{{ $item->id }}">
+                                        data-bs-toggle="collapse" data-bs-target="#collapse{{ $item->id }}" aria-expanded="true"
+                                        aria-controls="collapse{{ $item->id }}">
                                         {{ $item->question }}
                                     </button>
                                 </h5>
@@ -490,8 +507,8 @@
                             aria-describedby="emailHelpId" placeholder="your email" />
                     </div>
                     <div class="mb-3">
-                        <textarea class="form-control p-3 rounded-4" name="your message" placeholder="your message" id="message"
-                            rows="3"></textarea>
+                        <textarea class="form-control p-3 rounded-4" name="your message" placeholder="your message"
+                            id="message" rows="3"></textarea>
                     </div>
                     <div class="d-grid">
                         <button type="button" class="btn btn-dark btn-lg text-uppercase rounded-4">

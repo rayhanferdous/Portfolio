@@ -21,29 +21,31 @@
                     <div class="row">
 
                         <div class="form-group">
-                            <label for="logoHeader">Top Logo</label>
+                            <label for="logoHeader">Top Logo <span class="text-danger">*</span>
+                            </label>
                             <input type="file" class="form-control" id="logoHeader" name="logo_header"
                                 placeholder="Logo Header" value="{{ $setting->logo_header ?? '' }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="logoFooter">Logo Footer</label>
+                            <label for="logoFooter">Logo Footer <span class="text-danger">*</span></label>
                             <input type="file" class="form-control" id="logoFooter" name="logo_footer"
                                 placeholder="Logo Footer" value="{{ $setting->logo_footer ?? '' }}" required>
                         </div>
 
                         <div class="form-group">
                             <label for="footerLogoText">Footer logo text</label>
-                            <textarea class="form-control" id="footerLogoText" rows="4" maxlength="255" name="footer_logo_text">{{ $setting->footer_logo_text ?? '' }}</textarea>
+                            <textarea class="form-control" id="footerLogoText" rows="4" maxlength="255"
+                                name="footer_logo_text">{{ $setting->footer_logo_text ?? '' }}</textarea>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="fbUrl">FB Url</label>
                             <input class="form-control" id="fbUrl" rows="4" maxlength="255" name="fb_url"
-                                value={{ $setting->fb_url ?? '' }}>
+                                value="{{ $setting->fb_url ?? '' }}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="skypeUrl">Skype Url</label>
                             <input class="form-control" id="skypeUrl" rows="4" maxlength="255" name="skype_url"
-                                value={{ $setting->skype_url ?? '' }}>
+                                value="{{ $setting->skype_url ?? '' }}">
                         </div>
                         <div class="form-group col-md-6">
                             <label>Linkedin URL</label>
@@ -89,8 +91,7 @@
                                                     value="{{ $menuItem['name'] ?? '' }}" placeholder="Menu Item Name" />
                                                 <input type="text" class="form-control" name="menu_link[link][]"
                                                     value="{{ $menuItem['link'] ?? '' }}" placeholder="Menu Item Link" />
-                                                <button type="button"
-                                                    class="remove-menu-item btn btn-danger">Remove</button>
+                                                <button type="button" class="remove-menu-item btn btn-danger">Remove</button>
                                             </div>
                                         @endif
                                     @endforeach
@@ -116,21 +117,21 @@
     </div>
     @push('scripts')
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 // Add a new menu link input group
-                $('#addMenuLink').click(function() {
+                $('#addMenuLink').click(function () {
                     const newMenuLinkItem = `
-                        <div class="menu-link-item">
-                            <input type="text" class="form-control" name="menu_link[name][]" placeholder="Menu Item Name" />
-                            <input type="text" class="form-control" name="menu_link[link][]" placeholder="Menu Item Link" />
-                            <button type="button" class="remove-menu-item btn btn-danger">Remove</button>
-                        </div>
-                    `;
+                                        <div class="menu-link-item">
+                                            <input type="text" class="form-control" name="menu_link[name][]" placeholder="Menu Item Name" />
+                                            <input type="text" class="form-control" name="menu_link[link][]" placeholder="Menu Item Link" />
+                                            <button type="button" class="remove-menu-item btn btn-danger">Remove</button>
+                                        </div>
+                                    `;
                     $('#menuLinksContainer').append(newMenuLinkItem);
                 });
 
                 // Remove a menu link input group
-                $(document).on('click', '.remove-menu-item', function() {
+                $(document).on('click', '.remove-menu-item', function () {
                     $(this).closest('.menu-link-item').remove();
                 });
             });
