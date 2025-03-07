@@ -22,18 +22,19 @@
                     <div class="row">
 
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Name"
                                 value="{{ $testimonial->name ?? '' }}" required>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="date">Date</label>
                             <input type="date" class="form-control" id="date" name="date" placeholder="Date"
                                 value="{{ $testimonial->date ?? '' }}" required />
-                        </div>
+                        </div> --}}
                         <div class="form-group">
-                            <label for="content">Content</label>
-                            <textarea rows="7" class="form-control" id="content" name="content" placeholder="content" required> {{ $testimonial->content ?? '' }}</textarea>
+                            <label for="content">Content <span class="text-danger">*</span></label>
+                            <textarea rows="7" class="form-control" id="content" name="content" placeholder="content"
+                                required> {{ $testimonial->content ?? '' }}</textarea>
                         </div>
 
                     </div>

@@ -214,7 +214,7 @@
         </div>
     </section>
     {{-- referance section --}}
-    <section class="py-5">
+    {{-- <section class="py-5">
         <div class="container">
             <div class="rounded-4 p-5"
                 style="background-image: url(import/assets/images/section-banner.png); background-size: cover ; background-repeat: no-repeat; background-position: center;">
@@ -249,7 +249,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     {{-- image/video --}}
     <section class="portfolio py-5">
         <div class="container">

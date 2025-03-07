@@ -34,7 +34,7 @@ class TestimonialController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'date' => 'required',
+            // 'date' => 'required',
             'content' => 'required',
         ]);
 
@@ -66,7 +66,7 @@ class TestimonialController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'date' => 'required',
+            // 'date' => 'required',
             'content' => 'required',
         ]);
 
