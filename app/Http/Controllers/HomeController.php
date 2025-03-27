@@ -48,13 +48,14 @@ class HomeController extends Controller
         $categories = Category::all();
         $reviewers = Review::orderBy('id', 'desc')->take(5)->get();
 
-        $portfolios = Portfolio::with('category')->orderBy('id', 'desc')->take(6)->get();
+        $portfolios = Portfolio::with('category')->orderBy('id', 'desc')->inRandomOrder()->get();
 
         $heroSection = HeroSection::first();
-        $experiences = Qualification::where('type', ['Work'])->orderBy('id', 'desc')->take(3)->get();
-        $educations = Qualification::where('type', ['Education'])->orderBy('id', 'desc')->take(3)->get();
+        $experiences = Qualification::where('type', ['Work'])->orderBy('id', 'desc')->get();
+        $educations = Qualification::where('type', ['Education'])->orderBy('id', 'desc')->get();
+        $publications = Qualification::where('type', ['Publication'])->orderBy('id', 'desc')->get();
         $setting = Setting::first();
-        $news = News::orderBy('id', 'desc')->take(4)->get();
+        $news = News::orderBy('id', 'desc')->inRandomOrder()->get();
         $faq = FAQ::all();
         $testimonials = Testimonial::orderBy('id', 'desc')->get();
         $awards = Award::orderBy('id', 'desc')->get();
@@ -73,6 +74,7 @@ class HomeController extends Controller
             'news',
             'faq',
             'testimonials',
+            'publications',
             'awards'
         ));
     }

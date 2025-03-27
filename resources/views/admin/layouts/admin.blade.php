@@ -128,7 +128,7 @@
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#ui-portfolio" aria-expanded="false"
                             aria-controls="ui-basic">
-                            <span class="menu-title">Portfolios</span>
+                            <span class="menu-title">Her Works</span>
                             <i class="menu-arrow"></i>
                             <i class="mdi mdi-contacts menu-icon"></i>
                         </a>
@@ -137,7 +137,7 @@
                                 <li class="nav-item"> <a class="nav-link"
                                         href="{{ route('admin.category.index') }}">Category</a></li>
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="{{ route('admin.portfolio.index') }}">Portfolio</a></li>
+                                        href="{{ route('admin.portfolio.index') }}">Her Works</a></li>
                             </ul>
                         </div>
                     </li>
@@ -169,21 +169,21 @@
                     <li class="nav-item sidebar-actions">
                         <span class="nav-link">
                             {{-- <form method="GET" action="{{ route('admin.portfolio.create') }}">
-              <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a project</button>
-              </form> --}}
+                                <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a project</button>
+                            </form> --}}
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button class="btn btn-block btn-lg btn-danger mt-4">SignOut</button>
                             </form>
                             {{-- <div class="mt-4">
-                  <div class="border-bottom">
-                    <p class="text-secondary">Categories</p>
-                  </div>
-                  <ul class="gradient-bullet-list mt-4">
-                    <li>Free</li>
-                    <li>Pro</li>
-                  </ul>
-                </div> --}}
+                                <div class="border-bottom">
+                                    <p class="text-secondary">Categories</p>
+                                </div>
+                                <ul class="gradient-bullet-list mt-4">
+                                    <li>Free</li>
+                                    <li>Pro</li>
+                                </ul>
+                            </div> --}}
                         </span>
                     </li>
                 </ul>
@@ -210,7 +210,7 @@
     <script src="{{ asset('import/assets/admin/js/jquery.cookie.js" type="text/javascript') }}""></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="{{ asset('import/assets/admin/js/off-canvas.js') }}"></script>
+    <script src=" {{ asset('import/assets/admin/js/off-canvas.js') }}"></script>
     <script src="{{ asset('import/assets/admin/js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('import/assets/admin/js/misc.js') }}"></script>
     <!-- endinject -->
